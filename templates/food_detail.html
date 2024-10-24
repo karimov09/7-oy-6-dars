@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ food.nomi }}</title>
+    <link rel="stylesheet" href="{% static 'fastfood_app/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>{{ food.nomi }}</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                <li><a href="{% url 'logout' %}">Chiqish</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>{{ food.nomi }}</h2>
+            <p>Tarkibi: {{ food.tarkibi }}</p>
+            <p>Narxi: {{ food.narxi }} so'm</p>
+            <p>Ko'rishlar soni: {{ food.ko'rishlar_soni }}</p>
+            {% if food.rasm %}
+                <img src="{{ food.rasm.url }}" alt="{{ food.nomi }}" class="food-image">
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 FastFood Do'koni. Barcha huquqlar himoyalangan.</p>
+    </footer>
+</body>
+</html>

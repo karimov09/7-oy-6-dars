@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastFood Do'koni</title>
+    <link rel="stylesheet" href="{% static 'fastfood_app/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>FastFood Do'koni</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                <li><a href="{% url 'add_food' %}">Yangi taom qo'shish</a></li>
+                <li><a href="{% url 'logout' %}">Chiqish</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Oziq-ovqat turlari</h2>
+            <ul>
+                {% for food_type in food_types %}
+                <li>{{ food_type.nomi }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section>
+            <h2>Barcha oziq-ovqatlar</h2>
+            <ul>
+                {% for food in foods %}
+                <li>
+                    <a href="{% url 'food_detail' food.pk %}">{{ food.nomi }}</a> - {{ food.narxi }} so'm
+                    <p>Tarkibi: {{ food.tarkibi }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 FastFood Do'koni. Barcha huquqlar himoyalangan.</p>
+    </footer>
+</body>
+</html>
