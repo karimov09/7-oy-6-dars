@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="uz">
 <head>
@@ -18,28 +19,45 @@
         </nav>
     </header>
 
-    <main>
-        <section>
-            <h2>Oziq-ovqat turlari</h2>
-            <ul>
-                {% for food_type in food_types %}
-                <li>{{ food_type.nomi }}</li>
-                {% endfor %}
-            </ul>
-        </section>
-
-        <section>
-            <h2>Barcha oziq-ovqatlar</h2>
-            <ul>
-                {% for food in foods %}
-                <li>
-                    <a href="{% url 'food_detail' food.pk %}">{{ food.nomi }}</a> - {{ food.narxi }} so'm
-                    <p>Tarkibi: {{ food.tarkibi }}</p>
-                </li>
-                {% endfor %}
-            </ul>
-        </section>
-    </main>
+    <section>
+        <h2>Barcha oziq-ovqatlar</h2>
+        <ul>
+            {% for food in foods %}
+            <li>
+                <a href="{% url 'food_detail' food.pk %}">{{ food.nomi }}</a> - {{ food.narxi }} so'm
+                <p>Tarkibi: {{ food.tarkibi }}</p>
+                
+                
+                <form action="{% url 'add_like' food.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">
+                        {% if request.user in food.likes.all %}
+                            Laykni o'chirish
+                        {% else %}
+                            Layk qo'shish
+                        {% endif %}
+                    </button>
+                </form>
+                <p>{{ food.likes.count }} ta layk</p>
+    
+                
+                <h3>Kommentlar</h3>
+                <ul>
+                    {% for comment in food.comments.all %}
+                    <li>
+                        <strong>{{ comment.user.username }}</strong>: {{ comment.content }}
+                        {% if comment.user == request.user %}
+                            <a href="{% url 'update_comment' comment.id %}">O'zgartirish</a> |
+                            <a href="{% url 'delete_comment' comment.id %}">O'chirish</a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'add_comment' food.id %}">Komment qo'shish</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
 
     <footer>
         <p>&copy; 2024 FastFood Do'koni. Barcha huquqlar himoyalangan.</p>

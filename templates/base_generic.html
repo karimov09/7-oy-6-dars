@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastFood Do'koni</title>
+    <link rel="stylesheet" href="{% static 'fastfood_app/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>FastFood Do'koni</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'add_food' %}">Yangi taom qo'shish</a></li>
+                    <li><a href="{% url 'logout' %}">Chiqish</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Kirish</a></li>
+                    <li><a href="{% url 'register' %}">Ro'yxatdan o'tish</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 FastFood Do'koni. Barcha huquqlar himoyalangan.</p>
+    </footer>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+    }
+    header h1 {
+        margin: 0;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    nav ul li {
+        margin: 0 10px;
+    }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+    main {
+        padding: 2rem;
+    }
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+</style>

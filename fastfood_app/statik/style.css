@@ -1,12 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #333;
+    background-color: #007bff;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -27,7 +27,11 @@ nav ul li a {
     text-decoration: none;
 }
 
-main {
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main, section {
     padding: 2rem;
 }
 
@@ -60,13 +64,12 @@ ul li a:hover {
 }
 
 footer {
-    background-color: #333;
+    background-color: #007bff;
     color: white;
     text-align: center;
     padding: 1rem;
-    position: absolute;
+    position: relative;
     width: 100%;
-    bottom: 0;
 }
 
 button {
