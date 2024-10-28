@@ -2,6 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from fastfood_app import views
+from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -16,6 +17,7 @@ urlpatterns = [
     path('comment/<int:comment_id>/update/', views.update_comment, name='update_comment'),
     path('comment/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
 
+    path('admin/', admin.site.urls),
     path('register/', views.register_view, name='register'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

@@ -21,7 +21,7 @@ def add_food(request):
             return redirect('home')
     else:
         form = FoodForm()
-    return render(request, 'fastfood_app/food_form.html', {'form': form})
+    return render(request, 'food_form.html', {'form': form})
 
 @login_required
 @permission_required('fastfood_app.change_food', raise_exception=True)
@@ -34,7 +34,7 @@ def update_food(request, pk):
             return redirect('home')
     else:
         form = FoodForm(instance=food)
-    return render(request, 'fastfood_app/food_form.html', {'form': form})
+    return render(request, 'food_form.html', {'form': form})
 
 @login_required
 @permission_required('fastfood_app.delete_food', raise_exception=True)
@@ -43,13 +43,13 @@ def delete_food(request, pk):
     if request.method == "POST":
         food.delete()
         return redirect('home')
-    return render(request, 'fastfood_app/food_confirm_delete.html', {'food': food})
+    return render(request, 'food_confirm_delete.html', {'food': food})
 
 def food_detail(request, pk):
     food = get_object_or_404(Food, pk=pk)
     food.korishlar_soni += 1
     food.save()
-    return render(request, 'fastfood_app/food_detail.html', {'food': food})
+    return render(request, 'food_detail.html', {'food': food})
 
 @login_required
 def add_like(request, food_id):
@@ -72,7 +72,7 @@ def add_comment(request, food_id):
             return redirect('food_detail', pk=food.id)
     else:
         form = CommentForm()
-    return render(request, 'fastfood_app/add_comment.html', {'form': form, 'food': food})
+    return render(request, 'add_comment.html', {'form': form, 'food': food})
 
 @login_required
 def update_comment(request, comment_id):
