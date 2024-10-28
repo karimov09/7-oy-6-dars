@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="uz">
 <head>
@@ -22,7 +23,7 @@
             <h2>{{ food.nomi }}</h2>
             <p>Tarkibi: {{ food.tarkibi }}</p>
             <p>Narxi: {{ food.narxi }} so'm</p>
-            <p>Ko'rishlar soni: {{ food.ko'rishlar_soni }}</p>
+            <p>Ko'rishlar soni: {{ food.korishlar_soni }}</p>
             {% if food.rasm %}
                 <img src="{{ food.rasm.url }}" alt="{{ food.nomi }}" class="food-image">
             {% endif %}
